@@ -19,6 +19,11 @@ export function createCard(card, deleteCard, addLike, openModalImage) {
   return cardElement;
 }
 
-export function deleteCard(card) {
-  card.target.parentElement.remove();
+export function deleteCard(evt) {
+  const card = evt.target.closest(".card");
+  card.remove();
+}
+
+export function addLike(evt) {
+  evt.target.classList.toggle("card__like-button_is-active");
 }

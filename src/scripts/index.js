@@ -1,6 +1,6 @@
 import "../pages/index.css";
 import { initialCards } from "../components/cards";
-import { createCard, deleteCard } from "../components/card";
+import { createCard, deleteCard, addLike } from "../components/card";
 import { openModal, closeModal } from "../components/modal";
 
 const placesList = document.querySelector(".places__list");
@@ -76,10 +76,6 @@ function handleFormSubmitNewCard(evt) {
 }
 
 popupNewCardForm.addEventListener("submit", handleFormSubmitNewCard);
-
-function addLike(evt) {
-  evt.target.classList.toggle("card__like-button_is-active");
-}
 
 function openModalImage(evt) {
   popupCardImage.src = evt.target.src;
