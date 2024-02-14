@@ -15,6 +15,7 @@ import {
   postNewCard,
   updateNewAvatar,
 } from "../components/api";
+import { showLoadingBtn } from "../components/utils";
 
 const placesList = document.querySelector(".places__list");
 const cardTemplate = document.querySelector("#card-template").content;
@@ -102,10 +103,6 @@ function fillCards(initialCards, profileId) {
   });
 }
 
-const showLoadingBtn = (isLoading, button) => {
-  button.textContent = isLoading ? "Сохранение..." : "Сохранить";
-};
-
 profileEditButton.addEventListener("click", function () {
   openModal(popupEditProfile);
   fillPopupEditInputs();
@@ -121,7 +118,7 @@ function fillPopupEditInputs() {
   popupEditProfileDescriptionInput.value = profileDescription.textContent;
 }
 
-function handleFormSubmit(evt) {
+function submitEditProfileForm(evt) {
   evt.preventDefault();
 
   const profileNameValue = popupEditProfileNameInput.value;
@@ -144,7 +141,7 @@ function handleFormSubmit(evt) {
     });
 }
 
-popupEditProfileForm.addEventListener("submit", handleFormSubmit);
+popupEditProfileForm.addEventListener("submit", submitEditProfileForm);
 
 profileAddButton.addEventListener("click", function () {
   openModal(popupNewCard);
@@ -214,7 +211,6 @@ closeProfileAvatarButton.addEventListener("click", () => {
 function handleAvatarChangeForm(evt) {
   evt.preventDefault();
   const linkValue = profileAvatarLinkInput.value;
-  profileImage.style.backgroundImage = linkValue;
   showLoadingBtn(true, profilePopupAvatar.querySelector(".popup__button"));
   profileAvatarSaveButton.disabled = true;
   updateNewAvatar(linkValue)
@@ -264,7 +260,6 @@ deleteCardForm.addEventListener("submit", handleDeleteForm);
 
 let profileId;
 
-getInitialData();
 Promise.all([getUserData(), getInitialCards()])
   .then((array) => {
     const [userList, initialCards] = array;
