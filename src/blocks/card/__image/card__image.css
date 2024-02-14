@@ -1,9 +1,37 @@
 .card__image {
+  width: 100%;
   height: 282px;
   object-fit: cover;
-  width: 100%;
 }
 
 .card__image:hover {
   cursor: pointer;
+}
+
+.profile__image_cover {
+  position: relative;
+  cursor: pointer;
+  inline-size: fit-content;
+  block-size: fit-content;
+}
+
+.profile__image_cover:hover .profile__image-overlay {
+  visibility: initial;
+  opacity: 1;
+  transition: visibility 1s, opacity 1s;
+}
+
+.profile__image-overlay {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  font-family: inherit;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url(../../../images/edit-avatar-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px;
+  transition: visibility 1s, opacity 1s;
+  inline-size: 120px;
+  block-size: 120px;
 }
